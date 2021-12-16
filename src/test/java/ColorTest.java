@@ -44,7 +44,7 @@ public class ColorTest {
         int x = -1;
         int y = 2;
         String c = "o";
-        Color color = new Color(newCanvasArr, x, y,c);
+        Color color = new Color(newCanvasArr, x, y, c);
         Assertions.assertTrue(color.isPointOverCanvas(x, y));
         x = 1;
         y = 2;
@@ -56,10 +56,10 @@ public class ColorTest {
         int x = 1;
         int y = 2;
         String c = "o";
-        Color color = new Color(newCanvasArrHasLine, x, y,c);
-        Assertions.assertTrue(color.isPointDuplicate(x, y));
+        Color color = new Color(newCanvasArrHasLine, x, y, c);
+        Assertions.assertTrue(color.isPointDuplicate("o"));
         x = 1;
         y = 2;
-        Assertions.assertFalse(color.isPointDuplicate(x, y));
+        Assertions.assertFalse(color.isPointDuplicate("o"));
     }
 }
