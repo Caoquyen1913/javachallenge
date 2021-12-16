@@ -1,6 +1,6 @@
 package modules;
 
 public interface IColor {
-    String[][] fill();
+    String[][] fillColor();
     boolean isPointOverCanvas(int x, int y);
 }
