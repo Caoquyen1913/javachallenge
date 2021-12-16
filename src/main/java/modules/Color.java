@@ -57,10 +57,14 @@ public class Color implements IColor {
     }
 
     public boolean checkExist(String point, String c) {
-        if (Objects.equals(point, c) || Objects.equals(point, lineCharacter) || Objects.equals(point, horizontalLineBorderCharacter) || Objects.equals(point, verticalBorderCharacter)) {
+        if (Objects.equals(point, c) || Objects.equals(point, lineCharacter) || isPointDuplicate(point)) {
             return false;
         }
         return true;
+    }
+
+    public boolean isPointDuplicate(String point) {
+        return Objects.equals(point, horizontalLineBorderCharacter) || Objects.equals(point, verticalBorderCharacter);
     }
 
     @Override
