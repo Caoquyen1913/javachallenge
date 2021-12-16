@@ -1,3 +1,4 @@
+import modules.Color;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.Validator;
@@ -42,7 +43,8 @@ public class ColorTest {
     void checkPointOverCanvas() {
         int x = -1;
         int y = 2;
-        Color color = new Color(newCanvasArr, x, y);
+        String c = "o";
+        Color color = new Color(newCanvasArr, x, y,c);
         Assertions.assertTrue(color.isPointOverCanvas(x, y));
         x = 1;
         y = 2;
@@ -53,7 +55,8 @@ public class ColorTest {
     void checkPointDuplicateWithLineOrRectangle() {
         int x = 1;
         int y = 2;
-        Color color = new Color(newCanvasArrHasLine, x, y);
+        String c = "o";
+        Color color = new Color(newCanvasArrHasLine, x, y,c);
         Assertions.assertTrue(color.isPointDuplicate(x, y));
         x = 1;
         y = 2;
