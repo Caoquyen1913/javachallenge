@@ -1,3 +1,4 @@
+import modules.Rectangle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.Validator;
@@ -21,8 +22,8 @@ public class RectangleTest {
         int x2 = 6;
         int y2 = 2;
         Rectangle rectangle = new Rectangle(newCanvasArr, x1, y1, x2, y2);
-        Assertions.assertTrue(line.isPointOverCanvas(x1, y1));
-        Assertions.assertFalse(line.isPointOverCanvas(x2, y2));
+        Assertions.assertTrue(rectangle.isPointOverCanvas(x1, y1));
+        Assertions.assertFalse(rectangle.isPointOverCanvas(x2, y2));
     }
 
     @Test
