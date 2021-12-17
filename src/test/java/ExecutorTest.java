@@ -92,4 +92,18 @@ public class ExecutorTest {
         Assertions.assertEquals(expectedResult, result);
     }
 
+    @Test
+    void checkNull() throws Exception{
+        String expectedResult = """
+                enter: enter:\s""";
+        String input = """
+                
+                q
+                 """;
+        String result = tapSystemOut(() -> {
+            Executor executor = new Executor();
+            executor.exec(new Scanner(input));
+        });
+        Assertions.assertEquals(expectedResult, result);
+    }
 }
