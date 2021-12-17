@@ -1,6 +1,8 @@
 package modules;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Executor {
@@ -23,26 +25,26 @@ public class Executor {
                         canvas.printCanvas(canvasArr);
                     }
                     break;
-                case "l":
+                case "l", "r":
                     if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
                         int x1 = Integer.parseInt(str[1]);
                         int y1 = Integer.parseInt(str[2]);
                         int x2 = Integer.parseInt(str[3]);
                         int y2 = Integer.parseInt(str[4]);
-                        Line line = new Line(canvasArr, x1, y1, x2, y2);
-                        canvas.printCanvas(line.draw());
+                        canvasArr = control == "l" ? (new Line(canvasArr, x1, y1, x2, y2)).draw() : (new Rectangle(canvasArr, x1, y1, x2, y2)).draw();
+                        canvas.printCanvas(canvasArr);
                     }
                     break;
-                case "r":
-                    if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
-                        int x1 = Integer.parseInt(str[1]);
-                        int y1 = Integer.parseInt(str[2]);
-                        int x2 = Integer.parseInt(str[3]);
-                        int y2 = Integer.parseInt(str[4]);
-                        Rectangle rectangle = new Rectangle(canvasArr, x1, y1, x2, y2);
-                        canvas.printCanvas(rectangle.draw());
-                    }
-                    break;
+//                case "r":
+//                    if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
+//                        int x1 = Integer.parseInt(str[1]);
+//                        int y1 = Integer.parseInt(str[2]);
+//                        int x2 = Integer.parseInt(str[3]);
+//                        int y2 = Integer.parseInt(str[4]);
+//                        Rectangle rectangle = new Rectangle(canvasArr, x1, y1, x2, y2);
+//                        canvas.printCanvas(rectangle.draw());
+//                    }
+//                    break;
                 case "b":
                     if (str.length == 4 && !canvas.checkCanvasEmpty(canvasArr)) {
                         int x = Integer.parseInt(str[1]);
@@ -58,4 +60,10 @@ public class Executor {
             }
         }
     }
+//
+//    static Map selectShape = new HashMap();
+//    static {
+//        selectShape.put("l",new Line());
+//        selectShape.put("r",new Rectangle())
+//    }
 }
