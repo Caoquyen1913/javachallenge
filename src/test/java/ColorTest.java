@@ -45,10 +45,10 @@ public class ColorTest {
         int y = 2;
         String c = "o";
         Color color = new Color(newCanvasArr, x, y, c);
-        Assertions.assertTrue(color.isPointOverCanvas(x, y));
+        Assertions.assertFalse(color.isPointOverCanvas(x, y));
         x = 1;
         y = 2;
-        Assertions.assertFalse(color.isPointOverCanvas(x, y));
+        Assertions.assertTrue(color.isPointOverCanvas(x, y));
     }
 
     @Test
@@ -57,9 +57,28 @@ public class ColorTest {
         int y = 2;
         String c = "o";
         Color color = new Color(newCanvasArrHasLine, x, y, c);
-        Assertions.assertTrue(color.isPointDuplicate("o"));
-        x = 1;
-        y = 2;
-        Assertions.assertFalse(color.isPointDuplicate("o"));
+        Assertions.assertTrue(color.isPointDuplicate("x"));
+        Assertions.assertFalse(color.isPointDuplicate(" "));
+    }
+
+    @Test
+    void checkPointDuplicateWithColor() {
+        int x = 1;
+        int y = 2;
+        String c = "o";
+        Color color = new Color(newCanvasArrHasLine, x, y, c);
+        Assertions.assertTrue(color.isPointDuplicateColor("o"));
+        Assertions.assertFalse(color.isPointDuplicateColor(" "));
+    }
+
+    @Test
+    void checkPointDuplicateWithBorderCanvas() {
+        int x = 1;
+        int y = 2;
+        String c = "o";
+        Color color = new Color(newCanvasArrHasLine, x, y, c);
+        Assertions.assertTrue(color.isPointDuplicateBorder("-"));
+        Assertions.assertTrue(color.isPointDuplicateBorder("|"));
+        Assertions.assertFalse(color.isPointDuplicateBorder(" "));
     }
 }
