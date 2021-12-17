@@ -1,3 +1,4 @@
+import modules.Executor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,17 +11,23 @@ public class ExecutorTest {
     @Test
     void executeLine() throws Exception {
         String expectedResult = """
+                enter: ----------------------
+                |                    |
+                |                    |
+                |                    |
+                |                    |
                 ----------------------
+                enter: ----------------------
                 |                    |
                 |xxxxxx              |
                 |                    |
                 |                    |
                 ----------------------
-                                """;
+                enter:\s""";
         String input = """
                 C 20 4
                 L 1 2 6 2
-                 q
+                q
                 """;
         String result = tapSystemOut(() -> {
             Executor executor = new Executor();
@@ -32,13 +39,19 @@ public class ExecutorTest {
     @Test
     void executeRectangle() throws Exception {
         String expectedResult = """
+                enter: ----------------------
+                |                    |
+                |                    |
+                |                    |
+                |                    |
                 ----------------------
+                enter: ----------------------
                 |             xxxxx  |
                 |             x   x  |
                 |             xxxxx  |
                 |                    |
                 ----------------------
-                                """;
+                enter:\s""";
         String input = """
                 C 20 4
                 R 14 1 18 3
@@ -54,13 +67,19 @@ public class ExecutorTest {
     @Test
     void executeColor() throws Exception {
         String expectedResult = """
+                enter: ----------------------
+                |                    |
+                |                    |
+                |                    |
+                |                    |
                 ----------------------
+                enter: ----------------------
                 |oooooooooooooooooooo|
                 |oooooooooooooooooooo|
                 |oooooooooooooooooooo|
                 |oooooooooooooooooooo|
                 ----------------------
-                                """;
+                enter:\s""";
         String input = """
                 C 20 4
                 B 10 3 o
