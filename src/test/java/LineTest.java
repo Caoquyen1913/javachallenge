@@ -22,8 +22,8 @@ public class LineTest {
         int x2 = 6;
         int y2 = 2;
         Line line = new Line(newCanvasArr, x1, y1, x2, y2);
-        Assertions.assertTrue(line.isPointOverCanvas(x1, y1));
-        Assertions.assertFalse(line.isPointOverCanvas(x2, y2));
+        Assertions.assertFalse(line.isPointOverCanvas(x1, y1));
+        Assertions.assertTrue(line.isPointOverCanvas(x2, y2));
     }
 
     @Test
