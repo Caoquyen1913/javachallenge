@@ -16,10 +16,12 @@ public class Executor {
             control = str[0].toLowerCase();
             switch (control) {
                 case "c":
-                    int w = Integer.parseInt(str[1]);
-                    int h = Integer.parseInt(str[2]);
-                    canvasArr = canvas.buildCanvas(w, h);
-                    canvas.printCanvas(canvasArr);
+                    if (str.length == 3) {
+                        int w = Integer.parseInt(str[1]);
+                        int h = Integer.parseInt(str[2]);
+                        canvasArr = canvas.buildCanvas(w, h);
+                        canvas.printCanvas(canvasArr);
+                    }
                     break;
                 case "l":
                     if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
