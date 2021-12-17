@@ -15,6 +15,14 @@ public class Canvas {
         }
         return canvasArr;
     }
+    public void printCanvas(String[][] canvasArr) {
+        for (String[] row : canvasArr) {
+            for (String col : row) {
+                System.out.print(col);
+            }
+            System.out.println();
+        }
+    }
 
     public boolean checkCanvasEmpty(String[][] canvasArr) {
         return canvasArr.length == 0;
