@@ -1,8 +1,9 @@
 package modules;
 
-public class Canvas {
+public class Canvas implements ICanvas{
     static int CANVAS_BORDER = 2;
 
+    @Override
     public String[][] buildCanvas(int w, int h) {
         String[][] canvasArr = new String[h + CANVAS_BORDER][w + CANVAS_BORDER];
 
@@ -15,6 +16,8 @@ public class Canvas {
         }
         return canvasArr;
     }
+
+    @Override
     public void printCanvas(String[][] canvasArr) {
         for (String[] row : canvasArr) {
             for (String col : row) {
@@ -24,6 +27,7 @@ public class Canvas {
         }
     }
 
+    @Override
     public boolean checkCanvasEmpty(String[][] canvasArr) {
         return canvasArr.length == 0;
     }
