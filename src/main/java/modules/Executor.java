@@ -1,9 +1,10 @@
 package modules;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Executor {
-    public void exec(Scanner input){
+    public void exec(Scanner input) {
         Canvas canvas = new Canvas();
         String[] str;
         String[][] canvasArr = new String[][]{};
@@ -12,15 +13,15 @@ public class Executor {
             System.out.print("enter: ");
             str = input.nextLine().trim().split(" ");
             String control;
-            control = str[0];
+            control = str[0].toLowerCase();
             switch (control) {
-                case "C", "c":
+                case "c":
                     int w = Integer.parseInt(str[1]);
                     int h = Integer.parseInt(str[2]);
                     canvasArr = canvas.buildCanvas(w, h);
                     canvas.printCanvas(canvasArr);
                     break;
-                case "L", "l":
+                case "l":
                     if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
                         int x1 = Integer.parseInt(str[1]);
                         int y1 = Integer.parseInt(str[2]);
@@ -30,7 +31,7 @@ public class Executor {
                         canvas.printCanvas(line.draw());
                     }
                     break;
-                case "R", "r":
+                case "r":
                     if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
                         int x1 = Integer.parseInt(str[1]);
                         int y1 = Integer.parseInt(str[2]);
@@ -40,7 +41,7 @@ public class Executor {
                         canvas.printCanvas(rectangle.draw());
                     }
                     break;
-                case "B", "b":
+                case "b":
                     if (str.length == 4 && !canvas.checkCanvasEmpty(canvasArr)) {
                         int x = Integer.parseInt(str[1]);
                         int y = Integer.parseInt(str[2]);
@@ -49,7 +50,7 @@ public class Executor {
                         canvas.printCanvas(color.fillColor());
                     }
                     break;
-                case "Q", "q":
+                case "q":
                     hasQuit = true;
                     break;
             }
