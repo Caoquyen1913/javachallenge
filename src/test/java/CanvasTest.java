@@ -1,3 +1,4 @@
+import modules.Canvas;
 import org.junit.Rule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.jupiter.api.Assertions;
