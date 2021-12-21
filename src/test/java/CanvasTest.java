@@ -1,6 +1,4 @@
 import modules.Canvas;
-import org.junit.Rule;
-import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +41,10 @@ public class CanvasTest {
     void checkCanvasEmpty() {
         String[][] emptyArr = new String[][]{};
         Canvas canvas = new Canvas();
-        Assertions.assertTrue(canvas.checkCanvasEmpty(emptyArr));
-        Assertions.assertFalse(canvas.checkCanvasEmpty(newCanvasArr));
+        canvas.setCanvas(emptyArr);
+        Assertions.assertTrue(canvas.checkCanvasEmpty());
+        canvas.setCanvas(newCanvasArr);
+        Assertions.assertFalse(canvas.checkCanvasEmpty());
     }
 
     @Test

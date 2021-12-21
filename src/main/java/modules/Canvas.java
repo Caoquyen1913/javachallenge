@@ -35,7 +35,7 @@ public class Canvas implements ICanvas{
     }
 
     @Override
-    public boolean checkCanvasEmpty(String[][] canvasArr) {
-        return canvasArr.length == 0;
+    public boolean checkCanvasEmpty() {
+        return canvas.length == 0;
     }
 }

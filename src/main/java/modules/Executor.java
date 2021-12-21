@@ -1,4 +1,5 @@
 package modules;
+
 import java.util.Scanner;
 
 public class Executor {
@@ -7,6 +8,7 @@ public class Executor {
     final static String RECTANGLE = "r";
     final static String BUCKET_FILL = "b";
     final static String QUIT = "q";
+
     public void exec(Scanner input) {
         Canvas canvas = new Canvas();
         String[] str;
@@ -14,8 +16,7 @@ public class Executor {
         while (!hasQuit) {
             System.out.print("enter: ");
             str = input.nextLine().trim().split(" ");
-            String control;
-            control = str[0].toLowerCase();
+            String control = str[0].toLowerCase();
             switch (control) {
                 case CANVAS:
                     if (str.length == 3) {
@@ -26,7 +27,7 @@ public class Executor {
                     }
                     break;
                 case LINE, RECTANGLE:
-                    if (str.length == 5 && !canvas.checkCanvasEmpty(canvas.getCanvas())) {
+                    if (str.length == 5 && !canvas.checkCanvasEmpty()) {
                         int x1 = Integer.parseInt(str[1]);
                         int y1 = Integer.parseInt(str[2]);
                         int x2 = Integer.parseInt(str[3]);
@@ -36,7 +37,7 @@ public class Executor {
                     }
                     break;
                 case BUCKET_FILL:
-                    if (str.length == 4 && !canvas.checkCanvasEmpty(canvas.getCanvas())) {
+                    if (str.length == 4 && !canvas.checkCanvasEmpty()) {
                         int x = Integer.parseInt(str[1]);
                         int y = Integer.parseInt(str[2]);
                         String c = str[3];
@@ -51,10 +52,4 @@ public class Executor {
             }
         }
     }
-//
-//    static Map selectShape = new HashMap();
-//    static {
-//        selectShape.put("l",new Line());
-//        selectShape.put("r",new Rectangle())
-//    }
 }
