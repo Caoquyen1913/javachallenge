@@ -59,7 +59,8 @@ public class CanvasTest {
                                 """;
         String result = tapSystemOut(() -> {
             Canvas canvas = new Canvas();
-            canvas.printCanvas(newCanvasArr);
+            canvas.buildCanvas(20,4);
+            canvas.printCanvas();
         });
         Assertions.assertEquals(expectedResult,result);
     }

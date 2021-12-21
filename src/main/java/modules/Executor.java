@@ -1,15 +1,15 @@
 package modules;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Executor {
+    final static String CANVAS = "c";
+    final static String LINE = "l";
+    final static String RECTANGLE = "r";
+    final static String BUCKET_FILL = "b";
+    final static String QUIT = "q";
     public void exec(Scanner input) {
         Canvas canvas = new Canvas();
         String[] str;
-        String[][] canvasArr = new String[][]{};
         boolean hasQuit = false;
         while (!hasQuit) {
             System.out.print("enter: ");
@@ -17,44 +17,35 @@ public class Executor {
             String control;
             control = str[0].toLowerCase();
             switch (control) {
-                case "c":
+                case CANVAS:
                     if (str.length == 3) {
                         int w = Integer.parseInt(str[1]);
                         int h = Integer.parseInt(str[2]);
-                        canvasArr = canvas.buildCanvas(w, h);
-                        canvas.printCanvas(canvasArr);
+                        canvas.buildCanvas(w, h);
+                        canvas.printCanvas();
                     }
                     break;
-                case "l", "r":
-                    if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
+                case LINE, RECTANGLE:
+                    if (str.length == 5 && !canvas.checkCanvasEmpty(canvas.getCanvas())) {
                         int x1 = Integer.parseInt(str[1]);
                         int y1 = Integer.parseInt(str[2]);
                         int x2 = Integer.parseInt(str[3]);
                         int y2 = Integer.parseInt(str[4]);
-                        canvasArr = control == "l" ? (new Line(canvasArr, x1, y1, x2, y2)).draw() : (new Rectangle(canvasArr, x1, y1, x2, y2)).draw();
-                        canvas.printCanvas(canvasArr);
+                        canvas.setCanvas(control.equals(LINE) ? (new Line(canvas.getCanvas(), x1, y1, x2, y2)).draw() : (new Rectangle(canvas.getCanvas(), x1, y1, x2, y2)).draw());
+                        canvas.printCanvas();
                     }
                     break;
-//                case "r":
-//                    if (str.length == 5 && !canvas.checkCanvasEmpty(canvasArr)) {
-//                        int x1 = Integer.parseInt(str[1]);
-//                        int y1 = Integer.parseInt(str[2]);
-//                        int x2 = Integer.parseInt(str[3]);
-//                        int y2 = Integer.parseInt(str[4]);
-//                        Rectangle rectangle = new Rectangle(canvasArr, x1, y1, x2, y2);
-//                        canvas.printCanvas(rectangle.draw());
-//                    }
-//                    break;
-                case "b":
-                    if (str.length == 4 && !canvas.checkCanvasEmpty(canvasArr)) {
+                case BUCKET_FILL:
+                    if (str.length == 4 && !canvas.checkCanvasEmpty(canvas.getCanvas())) {
                         int x = Integer.parseInt(str[1]);
                         int y = Integer.parseInt(str[2]);
                         String c = str[3];
-                        Color color = new Color(canvasArr, x, y, c);
-                        canvas.printCanvas(color.fillColor());
+                        Color color = new Color(canvas.getCanvas(), x, y, c);
+                        canvas.setCanvas(color.fillColor());
+                        canvas.printCanvas();
                     }
                     break;
-                case "q":
+                case QUIT:
                     hasQuit = true;
                     break;
             }
