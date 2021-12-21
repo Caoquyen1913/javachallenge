@@ -2,6 +2,6 @@ package modules;
 
 public interface ICanvas {
     String[][] buildCanvas(int w, int h);
-    void printCanvas(String[][] canvasArr);
+    void printCanvas();
     boolean checkCanvasEmpty(String[][] canvasArr);
 }
