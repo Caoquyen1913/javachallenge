@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Color implements IColor {
-    private int x, y;
-    private String c;
-    private String[][] canvas;
-    final private String lineCharacter = "x";
-    final private String horizontalLineBorderCharacter = "-";
-    final private String verticalBorderCharacter = "|";
+    private final int x;
+    private final int y;
+    private static String c;
+    private static String[][] canvas;
+    static final private String lineCharacter = "x";
+    static final private String horizontalLineBorderCharacter = "-";
+    static final private String verticalBorderCharacter = "|";
+    static final private int[] row = new int[]{0, 0, -1, 1};
+    static final private int[] col = new int[]{-1, 1, 0, 0}; //left, right,up, down
 
     public Color(String[][] canvas, int x, int y, String c) {
         this.x = x;
@@ -26,25 +29,13 @@ public class Color implements IColor {
             int[] point = new int[]{y, x};
 
             while (listPoint.size() >= 1) {
-                String leftPoint = canvas[point[0]][point[1] - 1];
-                String rightPoint = canvas[point[0]][point[1] + 1];
-                String upPoint = canvas[point[0] - 1][point[1]];
-                String downPoint = canvas[point[0] + 1][point[1]];
-                if (checkExist(leftPoint, c)) {
-                    canvas[point[0]][point[1] - 1] = c;
-                    listPoint.add(new int[]{point[0], point[1] - 1});
-                }
-                if (checkExist(rightPoint, c)) {
-                    canvas[point[0]][point[1] + 1] = c;
-                    listPoint.add(new int[]{point[0], point[1] + 1});
-                }
-                if (checkExist(upPoint, c)) {
-                    canvas[point[0] - 1][point[1]] = c;
-                    listPoint.add(new int[]{point[0] - 1, point[1]});
-                }
-                if (checkExist(downPoint, c)) {
-                    canvas[point[0] + 1][point[1]] = c;
-                    listPoint.add(new int[]{point[0] + 1, point[1]});
+                for (int i = 0; i < row.length; i++) {
+                    int pointX = point[0] + row[i];
+                    int pointY = point[1] + col[i];
+                    if (checkExist(canvas[pointX][pointY])) {
+                        fillPoint(pointX, pointY);
+                        listPoint.add(new int[]{pointX, pointY});
+                    }
                 }
                 listPoint.remove(0);
                 if (listPoint.size() >= 1) {
@@ -56,7 +47,11 @@ public class Color implements IColor {
         return canvas;
     }
 
-    public boolean checkExist(String point, String c) {
+    static void fillPoint(int x, int y) {
+        canvas[x][y] = c;
+    }
+
+    public boolean checkExist(String point) {
         if (isPointDuplicateBorder(point) || isPointDuplicateColor(point) || isPointDuplicate(point)) {
             return false;
         }
