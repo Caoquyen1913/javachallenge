@@ -34,9 +34,6 @@ public class LineTest {
         int y2 = 2;
         Line line = new Line(newCanvasArr, x1, y1, x2, y2);
         Assertions.assertTrue(line.isHorizontalLine(y1, y2));
-        x1 = 1;
-        y1 = 2;
-        x2 = 6;
         y2 = 3;
         Assertions.assertFalse(line.isHorizontalLine(y1, y2));
     }
@@ -51,9 +48,6 @@ public class LineTest {
         Line line = new Line(newCanvasArr, x1, y1, x2, y2);
         Assertions.assertTrue(line.isVerticalLine(x1, x2));
         x1 = 1;
-        y1 = 2;
-        x2 = 6;
-        y2 = 3;
         Assertions.assertFalse(line.isVerticalLine(x1, x2));
     }
 

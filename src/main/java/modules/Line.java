@@ -1,7 +1,10 @@
 package modules;
 
 public class Line implements IShape {
-    private int x1, x2, y1, y2;
+    private final int x1;
+    private final int x2;
+    private final int y1;
+    private final int y2;
     String[][] canvas;
     final String lineCharacter = "x";
     public Line(String[][] canvas, int x1, int y1, int x2, int y2) {

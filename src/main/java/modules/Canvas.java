@@ -2,7 +2,7 @@ package modules;
 
 public class Canvas implements ICanvas{
     static int CANVAS_BORDER = 2;
-    static private String[][] canvas;
+    private String[][] canvas;
     @Override
     public String[][] buildCanvas(int w, int h) {
         canvas = new String[h + CANVAS_BORDER][w + CANVAS_BORDER];

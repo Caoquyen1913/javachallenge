@@ -52,10 +52,7 @@ public class Color implements IColor {
     }
 
     public boolean checkExist(String point) {
-        if (isPointDuplicateBorder(point) || isPointDuplicateColor(point) || isPointDuplicate(point)) {
-            return false;
-        }
-        return true;
+        return !isPointDuplicateBorder(point) && !isPointDuplicateColor(point) && !isPointDuplicate(point);
     }
 
     public boolean isPointDuplicateBorder(String point) {
