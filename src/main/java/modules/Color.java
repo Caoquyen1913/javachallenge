@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Color implements IColor {
     private final int x;
     private final int y;
-    private static String c;
-    private static String[][] canvas;
+    private final String c;
+    private final String[][] canvas;
     static final private String lineCharacter = "x";
     static final private String horizontalLineBorderCharacter = "-";
     static final private String verticalBorderCharacter = "|";
@@ -47,7 +47,7 @@ public class Color implements IColor {
         return canvas;
     }
 
-    static void fillPoint(int x, int y) {
+    void fillPoint(int x, int y) {
         canvas[x][y] = c;
     }
 

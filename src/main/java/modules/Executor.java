@@ -3,11 +3,11 @@ package modules;
 import java.util.Scanner;
 
 public class Executor {
-    final static String CANVAS = "c";
-    final static String LINE = "l";
-    final static String RECTANGLE = "r";
-    final static String BUCKET_FILL = "b";
-    final static String QUIT = "q";
+    final String CANVAS = "c";
+    final String LINE = "l";
+    final String RECTANGLE = "r";
+    final String BUCKET_FILL = "b";
+    final String QUIT = "q";
 
     public void exec(Scanner input) {
         Canvas canvas = new Canvas();
