@@ -1,6 +1,7 @@
 package modules;
 
+import java.util.ArrayList;
+
 public interface IColor {
-    String[][] fillColor();
-    boolean isPointOverCanvas(int x, int y);
+    ArrayList fillColor(String[][]canvas);
 }

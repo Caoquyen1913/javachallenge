@@ -8,6 +8,8 @@ public class Executor {
     final String RECTANGLE = "r";
     final String BUCKET_FILL = "b";
     final String QUIT = "q";
+    final String lineCharacter = "x";
+    final String rectangleCharacter = "x";
 
     public void exec(Scanner input) {
         Canvas canvas = new Canvas();
@@ -32,7 +34,10 @@ public class Executor {
                         int y1 = Integer.parseInt(str[2]);
                         int x2 = Integer.parseInt(str[3]);
                         int y2 = Integer.parseInt(str[4]);
-                        canvas.setCanvas(control.equals(LINE) ? (new Line(canvas.getCanvas(), x1, y1, x2, y2)).draw() : (new Rectangle(canvas.getCanvas(), x1, y1, x2, y2)).draw());
+                        Point startPoint = new Point(x1, y1, lineCharacter);
+                        Point endPoint = new Point(x2, y2, lineCharacter);
+
+                        canvas.add(control.equals(LINE) ? (new Line(startPoint, endPoint)) : (new Rectangle(startPoint, endPoint)));
                         canvas.printCanvas();
                     }
                     break;
@@ -41,8 +46,8 @@ public class Executor {
                         int x = Integer.parseInt(str[1]);
                         int y = Integer.parseInt(str[2]);
                         String c = str[3];
-                        Color color = new Color(canvas.getCanvas(), x, y, c);
-                        canvas.setCanvas(color.fillColor());
+                        Point point = new Point(x, y, c);
+                        canvas.add(new Color(point,c));
                         canvas.printCanvas();
                     }
                     break;

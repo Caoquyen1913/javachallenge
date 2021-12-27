@@ -1,6 +1,9 @@
 package modules;
 
+import java.util.ArrayList;
+
 public interface IShape {
-    String[][] draw();
-    boolean isPointOverCanvas(int x, int y);
+    ArrayList draw();
+    Point getStartPoint();
+    Point getEndPoint();
 }

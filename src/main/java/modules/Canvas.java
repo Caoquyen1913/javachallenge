@@ -1,8 +1,13 @@
 package modules;
 
-public class Canvas implements ICanvas{
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
+public class Canvas implements ICanvas {
     static int CANVAS_BORDER = 2;
     private String[][] canvas;
+
     @Override
     public String[][] buildCanvas(int w, int h) {
         canvas = new String[h + CANVAS_BORDER][w + CANVAS_BORDER];
@@ -17,13 +22,31 @@ public class Canvas implements ICanvas{
         return canvas;
     }
 
-    public void setCanvas(String[][] canvas){
-        this.canvas = canvas;
+    public void add(@NotNull IShape shape) {
+        ArrayList<Point> shapeDrawer = shape.draw();
+        Point startPoint = shape.getStartPoint();
+        Point endPoint = shape.getEndPoint();
+        if (isPointOverCanvas(startPoint) && isPointOverCanvas(endPoint)) {
+            shapeDrawer.forEach(point -> {
+                canvas[point.getX()][point.getY()] = point.getCharacter();
+            });
+        }
     }
 
-    public String[][] getCanvas(){
+    public void add(@NotNull Color color) {
+        Point fillPoint = color.getFillPoint();
+        if (isPointOverCanvas(fillPoint)) {
+            ArrayList<Point> shapeDrawer = color.fillColor(canvas);
+            shapeDrawer.forEach(point -> {
+                canvas[point.getX()][point.getY()] = point.getCharacter();
+            });
+        }
+    }
+
+    public String[][] getCanvas() {
         return canvas;
     }
+
     @Override
     public void printCanvas() {
         for (String[] row : canvas) {
@@ -37,5 +60,13 @@ public class Canvas implements ICanvas{
     @Override
     public boolean checkCanvasEmpty() {
         return canvas.length == 0;
+    }
+
+    boolean isPointOverCanvas(Point point) {
+        int maxCol = canvas[0].length;
+        int maxRow = canvas.length;
+        int x = point.getX();
+        int y = point.getY();
+        return y < maxRow - 1 && y > 0 && x < maxCol && x > 0;
     }
 }

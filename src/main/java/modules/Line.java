@@ -1,51 +1,56 @@
 package modules;
 
+import java.util.ArrayList;
+
 public class Line implements IShape {
-    private final int x1;
-    private final int x2;
-    private final int y1;
-    private final int y2;
-    String[][] canvas;
     final String lineCharacter = "x";
-    public Line(String[][] canvas, int x1, int y1, int x2, int y2) {
-        this.canvas = canvas;
-        this.x1 = x1;
-        this.x2 = x2;
-        this.y1 = y1;
-        this.y2 = y2;
+    private final Point startPoint;
+    private final Point endPoint;
+
+    public Line(Point startPoint, Point endPoint) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
     }
 
     @Override
-    public String[][] draw() {
-        if (isPointOverCanvas(x1, y1) && isPointOverCanvas(x2, y2)) {
-            if(isHorizontalLine(y1,y2)){
-                for (int i = Math.min(x1, x2); i <= Math.max(x1, x2); i++) {
-                    canvas[y1][i] = lineCharacter;
-                }
-            }
-            else if (isVerticalLine(x1,x2)){
-                for (int i = Math.min(y1, y2); i <= (Math.max(y2, y1)); i++) {
-                    canvas[i][x1] = lineCharacter;
-                }
-            }
-        }
-        return canvas;
+    public Point getStartPoint() {
+        return startPoint;
     }
 
-    public boolean isHorizontalLine( int y1, int y2) {
+    @Override
+    public Point getEndPoint() {
+        return endPoint;
+    }
+
+    @Override
+    public ArrayList<Point> draw() {
+        Point point;
+        int x1 = startPoint.getX();
+        int x2 = endPoint.getX();
+        int y1 = startPoint.getY();
+        int y2 = endPoint.getY();
+        ArrayList<Point> line = new ArrayList<>();
+        if (isHorizontalLine(y1, y2)) {
+            for (int i = Math.min(x1, x2); i <= Math.max(x1, x2); i++) {
+                point = new Point(y1, i, lineCharacter);
+                line.add(point);
+            }
+        } else if (isVerticalLine(x1, x2)) {
+            for (int i = Math.min(y1, y2); i <= (Math.max(y2, y1)); i++) {
+                point = new Point(i, x1, lineCharacter);
+                line.add(point);
+            }
+        }
+        return line;
+    }
+
+    boolean isHorizontalLine(int y1, int y2) {
         return y1 == y2;
     }
 
 
-    public boolean isVerticalLine(int x1, int x2) {
+    boolean isVerticalLine(int x1, int x2) {
         return x1 == x2;
-    }
-
-    @Override
-    public boolean isPointOverCanvas(int x, int y) {
-        int maxCol = canvas[0].length;
-        int maxRow = canvas.length;
-        return x < maxCol - 1 && x > 0 && y < maxRow && y > 0;
     }
 
 }
