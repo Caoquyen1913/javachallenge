@@ -31,7 +31,6 @@ public class Color implements IColor {
             for (int i = 0; i < row.length; i++) {
                 int pointX = point[0] + row[i];
                 int pointY = point[1] + col[i];
-                System.out.println(checkExist(listPointNotEmpty, pointX, pointY));
                 if (!checkExist(listPointNotEmpty, pointX, pointY)) {
                     colorPoint = new Point(pointX, pointY, c);
                     color.add(colorPoint);
