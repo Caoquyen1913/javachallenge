@@ -1,71 +1,57 @@
 import modules.Line;
+import modules.Point;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.Validator;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
+
+import static org.junit.Assert.*;
+
+
 public class LineTest {
-    private final String[][] newCanvasArr = {
-            {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
-    };
+    private final ArrayList<Point> arrayList = new ArrayList<>();
 
     Validator validator = new Validator();
 
-    @Test
-    void checkPointOverCanvas() {
-        int x1 = -1;
-        int y1 = 2;
-        int x2 = 6;
-        int y2 = 2;
-        Line line = new Line(newCanvasArr, x1, y1, x2, y2);
-        Assertions.assertFalse(line.isPointOverCanvas(x1, y1));
-        Assertions.assertTrue(line.isPointOverCanvas(x2, y2));
+    @BeforeEach
+    public void init() {
+        for (int i = 1; i <= 6; i++) {
+            arrayList.add(new Point(2, i, "x"));
+        }
     }
 
     @Test
     void checkHorizontalLine() {
-        int x1 = 1;
-        int y1 = 2;
-        int x2 = 6;
-        int y2 = 2;
-        Line line = new Line(newCanvasArr, x1, y1, x2, y2);
-        Assertions.assertTrue(line.isHorizontalLine(y1, y2));
-        y2 = 3;
-        Assertions.assertFalse(line.isHorizontalLine(y1, y2));
+        Point point1 = new Point(1, 2);
+        Point point2 = new Point(3, 4);
+        Line line = new Line(point1, point2);
+        ArrayList<Point> expectedResult = new ArrayList<>();
+        ArrayList<Point> result = line.draw();
+        validator.testEqualArray(expectedResult, result);
     }
 
     @Test
     void checkVerticalLine() {
-
-        int x1 = 6;
-        int y1 = 2;
-        int x2 = 6;
-        int y2 = 4;
-        Line line = new Line(newCanvasArr, x1, y1, x2, y2);
-        Assertions.assertTrue(line.isVerticalLine(x1, x2));
-        x1 = 1;
-        Assertions.assertFalse(line.isVerticalLine(x1, x2));
+        Point point1 = new Point(1, 2);
+        Point point2 = new Point(6, 4);
+        Line line = new Line(point1, point2);
+        ArrayList<Point> expectedResult = new ArrayList<>();
+        ArrayList<Point> result = line.draw();
+        validator.testEqualArray(expectedResult, result);
     }
 
     @Test
     void draw() {
-        String[][] expectedResult = {
-                {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-                {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-                {"|", "x", "x", "x", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-                {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-                {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-                {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
-        };
-        Line line = new Line(newCanvasArr, 1, 2, 6, 2);
-        String[][] result = line.draw();
-        validator.testEqualArray(expectedResult, result);
-        line = new Line(newCanvasArr, 1, 2, 6, 3);
-        result = line.draw();
-        validator.testEqualArray(newCanvasArr, result);
+        Point point1 = new Point(1, 2);
+        Point point2 = new Point(6, 2);
+        Line line = new Line(point1, point2);
+        ArrayList<Point> result = line.draw();
+        validator.testEqualArray(arrayList, result);
     }
 }

@@ -1,43 +1,42 @@
+import modules.Line;
+import modules.Point;
 import modules.Rectangle;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.Validator;
 
+import java.util.ArrayList;
+
 public class RectangleTest {
-    private final String[][] newCanvasArr = {
-            {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-            {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
-    };
+    private final ArrayList<Point> arrayList = new ArrayList<>();
 
     Validator validator = new Validator();
 
-    @Test
-    void checkPointOverCanvas() {
-        int x1 = -1;
-        int y1 = 2;
-        int x2 = 6;
-        int y2 = 2;
-        Rectangle rectangle = new Rectangle(newCanvasArr, x1, y1, x2, y2);
-        Assertions.assertFalse(rectangle.isPointOverCanvas(x1, y1));
-        Assertions.assertTrue(rectangle.isPointOverCanvas(x2, y2));
+    @BeforeEach
+    public void init() {
+        arrayList.add(new Point(1, 14, "x"));
+        arrayList.add(new Point(1, 15, "x"));
+        arrayList.add(new Point(1, 16, "x"));
+        arrayList.add(new Point(1, 17, "x"));
+        arrayList.add(new Point(1, 18, "x"));
+        arrayList.add(new Point(2, 14, "x"));
+        arrayList.add(new Point(2, 18, "x"));
+        arrayList.add(new Point(3, 14, "x"));
+        arrayList.add(new Point(3, 15, "x"));
+        arrayList.add(new Point(3, 16, "x"));
+        arrayList.add(new Point(3, 17, "x"));
+        arrayList.add(new Point(3, 18, "x"));
+
     }
+
 
     @Test
     void draw() {
-        String[][] expectedResult = {
-                {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-                {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", " ", " ", "|"},
-                {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", " ", " ", " ", "x", " ", " ", "|"},
-                {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", " ", " ", "|"},
-                {"|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"},
-                {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
-        };
-        Rectangle rectangle = new Rectangle(newCanvasArr, 14, 1, 18, 3);
-        String[][] result = rectangle.draw();
-        validator.testEqualArray(expectedResult, result);
+        Point point1 = new Point(14, 1);
+        Point point2 = new Point(18, 3);
+        Rectangle rectangle = new Rectangle(point1, point2);
+        ArrayList<Point> result = rectangle.draw();
+        validator.testEqualArray(arrayList, result);
     }
 }
