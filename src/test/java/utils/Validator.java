@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class Validator {
     public void testEqualArray(ArrayList<Point> expectedResult, ArrayList<Point> result) {
-        System.out.println(expectedResult.size());
-        System.out.println(result.size());
         Assertions.assertEquals(expectedResult.size(),result.size());
         for (int i = 0; i < result.size(); i++) {
             Point resultCol = result.get(i);
