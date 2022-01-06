@@ -46,9 +46,4 @@ public class Rectangle implements IShape {
         return rectangle;
     }
 
-    boolean isPointOverCanvas(String[][] canvas, int x, int y) {
-        int maxCol = canvas[0].length;
-        int maxRow = canvas.length;
-        return x < maxCol - 1 && x > 0 && y < maxRow && y > 0;
-    }
 }

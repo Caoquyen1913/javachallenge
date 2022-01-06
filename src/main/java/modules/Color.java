@@ -2,11 +2,11 @@ package modules;
 
 import java.util.ArrayList;
 
-public class Color implements IColor {
+public class Color {
     private final String c;
     private final Point fillPoint;
-    static final private int[] row = new int[]{0,0, 0, -1, 1};
-    static final private int[] col = new int[]{0,-1, 1, 0, 0}; //left, right,up, down
+    static final private int[] row = new int[]{0, 0, 0, -1, 1};
+    static final private int[] col = new int[]{0, -1, 1, 0, 0}; //left, right,up, down
 
     public Color(Point fillPoint, String c) {
         this.fillPoint = fillPoint;
@@ -17,7 +17,6 @@ public class Color implements IColor {
         return fillPoint;
     }
 
-    @Override
     public ArrayList<Point> fillColor(ArrayList<Point> listPointNotEmpty) {
         Point colorPoint;
         int x = fillPoint.getX();

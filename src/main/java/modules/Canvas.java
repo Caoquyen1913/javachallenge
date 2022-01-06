@@ -5,12 +5,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class Canvas implements ICanvas {
-    static int CANVAS_BORDER = 2;
+    private static final int CANVAS_BORDER = 2;
     private ArrayList<ArrayList<Point>> canvas;
-    String spaceCharacter = " ";
-    String horizontalCharacter = "-";
-    String verticalCharacter = "|";
-    String lineCharacter = "x";
+    private static final String SPACE_CHARACTER = " ";
+    private static final String HORIZONTAL_CHARACTER = "-";
+    private static final String VERTICAL_CHARACTER = "|";
 
     @Override
     public ArrayList<ArrayList<Point>> buildCanvas(int w, int h) {
@@ -18,9 +17,9 @@ public class Canvas implements ICanvas {
         for (int i = 0; i < h + CANVAS_BORDER; i++) {
             ArrayList<Point> row = new ArrayList<>();
             for (int j = 0; j < w + CANVAS_BORDER; j++) {
-                if (i == 0 || i == h + CANVAS_BORDER - 1) row.add(new Point(i, j, horizontalCharacter));
-                else if (j == 0 || j == w + CANVAS_BORDER - 1) row.add(new Point(i, j, verticalCharacter));
-                else row.add(new Point(i, j, spaceCharacter));
+                if (i == 0 || i == h + CANVAS_BORDER - 1) row.add(new Point(i, j, HORIZONTAL_CHARACTER));
+                else if (j == 0 || j == w + CANVAS_BORDER - 1) row.add(new Point(i, j, VERTICAL_CHARACTER));
+                else row.add(new Point(i, j, SPACE_CHARACTER));
             }
             canvas.add(row);
         }
@@ -38,17 +37,17 @@ public class Canvas implements ICanvas {
 
     public void add(@NotNull Color color) {
         Point fillPoint = color.getFillPoint();
-        ArrayList<Point> arr = getPointNotEmpty();
         if (isPointOverCanvas(fillPoint)) {
+            ArrayList<Point> arr = getPointNotEmpty();
             ArrayList<Point> shapeDrawer = color.fillColor(arr);
             shapeDrawer.forEach(point -> canvas.get(point.getX()).set(point.getY(), point));
         }
     }
 
-    ArrayList<Point> getPointNotEmpty(){
+    ArrayList<Point> getPointNotEmpty() {
         ArrayList<Point> arr = new ArrayList<>();
-        canvas.forEach(row-> row.forEach(col-> {
-            if(col.getCharacter().equals(horizontalCharacter)||col.getCharacter().equals(verticalCharacter)||col.getCharacter().equals(lineCharacter)){
+        canvas.forEach(row -> row.forEach(col -> {
+            if (col.getCharacter().equals(HORIZONTAL_CHARACTER) || col.getCharacter().equals(VERTICAL_CHARACTER) || col.getCharacter().equals(Line.LINE_CHARACTER)) {
                 arr.add(new Point(col.getX(), col.getY()));
             }
         }));

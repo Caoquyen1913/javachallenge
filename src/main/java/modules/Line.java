@@ -3,7 +3,7 @@ package modules;
 import java.util.ArrayList;
 
 public class Line implements IShape {
-    final String lineCharacter = "x";
+    static final String LINE_CHARACTER = "x";
     private final Point startPoint;
     private final Point endPoint;
 
@@ -32,12 +32,12 @@ public class Line implements IShape {
         ArrayList<Point> line = new ArrayList<>();
         if (isHorizontalLine(y1, y2)) {
             for (int i = Math.min(x1, x2); i <= Math.max(x1, x2); i++) {
-                point = new Point(y1, i, lineCharacter);
+                point = new Point(y1, i, LINE_CHARACTER);
                 line.add(point);
             }
         } else if (isVerticalLine(x1, x2)) {
             for (int i = Math.min(y1, y2); i <= (Math.max(y2, y1)); i++) {
-                point = new Point(i, x1, lineCharacter);
+                point = new Point(i, x1, LINE_CHARACTER);
                 line.add(point);
             }
         }
